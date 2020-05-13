@@ -16,7 +16,7 @@ then
     kubectl config use-context kubernetes-admin@udagram
 fi
 
-configmap=`cat "$DIR/env-configmap.yaml" | sed "s/{{AWS_BUCKET}}/$AWS_BUCKET/g;s/{{AWS_PROFILE}}/$AWS_PROFILE/g;s/{{AWS_REGION}}/$AWS_REGION/g;s/{{POSTGRESS_DB}}/$POSTGRESS_DB/g;s/{{POSTGRESS_HOST}}/$POSTGRESS_HOST/g;s#{{APP_URL}}#$APP_URL#g"`
+configmap=`cat "$DIR/env-configmap.yaml" | sed "s/{{AWS_BUCKET}}/$AWS_BUCKET/g;s/{{AWS_PROFILE}}/$AWS_PROFILE/g;s/{{AWS_REGION}}/$AWS_REGION/g;s/{{POSTGRESS_DATABASE}}/$POSTGRESS_DATABASE/g;s/{{POSTGRESS_HOST}}/$POSTGRESS_HOST/g;s#{{APP_URL}}#$APP_URL#g"`
 echo "$configmap" | kubectl apply -f -
 
 secret=`cat "$DIR/env-secret.yaml" | sed "s/{{JWT_SECRET}}/$JWT_SECRET/g;s/{{POSTGRESS_USERNAME}}/$POSTGRESS_USERNAME/g;s/{{POSTGRESS_PASSWORD}}/$POSTGRESS_PASSWORD/g"`
