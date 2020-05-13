@@ -6,7 +6,7 @@ metadata:
   name: backend-feed
 spec:
   selector:
-    matchlabels:
+    matchLabels:
       app: backend-feed  
   replicas: 3
   template:
