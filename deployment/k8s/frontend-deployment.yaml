@@ -7,7 +7,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: frontend  
+      service: frontend  
   replicas: 2
   template:
     metadata:
