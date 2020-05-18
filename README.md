@@ -56,7 +56,7 @@ AWS_PROFILE=__YOUR_AWS_PROFILE__
 
 Replace the variables: `__XXX__` by your own information
 
-Build the images by running:
+Build the images by running (Replace the image name by your own Docker Hub name):
 
 ```
 docker-compose -f docker-compose-build.yaml build --parallel
@@ -69,3 +69,51 @@ docker-compose up
 ```
 
 The application is now running at http://localhost:8100
+
+### Create a Kubernetes cluster
+
+#### Provision the AWS cluster infrastructure using terraform and install K8s on AWS using KubeOne
+
+Follow the instruction at https://github.com/kubermatic/kubeone/blob/master/docs/quickstart-aws.md
+
+### Deploy the Kubernetes services by running
+
+```
+./deployment/k8s/deploy_service.sh
+'''
+
+### Build the production images
+
+Set these variables to your environment and secret using kubectl 
+
+```
+POSTGRESS_USERNAME=__YOUR_MASTER_USERNAME__
+POSTGRESS_PASSWORD=__YOUR_MASTER_PASSWORD__
+POSTGRESS_DB=__YOUR_INITIAL_DATABASE_NAME__
+POSTGRESS_HOST=__YOUR_AMAZON_RDS_DB_HOST__
+JWT_SECRET=__YOUR_JWT_SECRET__
+AWS_BUCKET=__YOUR_AWS_BUCKET_NAME__
+AWS_REGION=__YOUR_AWS_BUCKET_REGION__
+AWS_PROFILE=__YOUR_AWS_PROFILE__
+AWS_CREDENTIALS=__YOUR_AWS_CREDENTIAL__
+APP_URL=http://__YOUR_FRONTEND_SERVICE_URL__:8100
+```
+
+Replace the values by your data. `__YOUR_FRONTEND_SERVICE_URL__` can be retrieved using the command:
+
+```
+kubectl get svc
+```
+
+You can also retrieve the reverse proxy URL from the above command.
+
+Add the reverseproxy URL to the file `frontend/src/environments/environment.ts`
+
+Build and push the docker image for the frontend.
+
+### Deploy the Kubernetes pods
+
+For each deployment.yaml in deployment/k8s replace the image name by your own Docker Hub name. 
+
+./deployment/k8s/deploy.sh
+
