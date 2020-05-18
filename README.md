@@ -10,6 +10,8 @@ A basic Ionic client web application which consumes the RestAPI Backend.
 
 ## Getting Setup
 
+### Dependencies
+
 The following tools need to be installed on your machine:
 
 - [Docker](https://www.docker.com/products/docker-desktop)
@@ -21,6 +23,20 @@ Furthermore, you need to have:
 - an [Amazon Web Services](https://console.aws.amazon.com) account
 - a [DockerHub](https://hub.docker.com/) account
 
+
+### Create a PostgreSQL Instance
+
+The application uses `PostgreSQL` database to store the user and feed data.
+
+Create a PostgresSQL instance via Amazon RDS. Record instance info. 
+
+### Create an S3 bucket
+
+The application uses an AWS S3 bucket to store the images. 
+
+Create an S3 Bucket via AWS S3. Record bucket info.
+
+
 ## Deploy on local
 
 `Docker` is used to start the application on the local environment
@@ -28,17 +44,17 @@ Furthermore, you need to have:
 The variables below need to be added to your environment:
 
 ```
-POSTGRESS_USERNAME=udagram
-POSTGRESS_PASSWORD=local
-POSTGRESS_DATABASE=udagram
-POSTGRESS_HOST=db
+POSTGRESS_USERNAME=__YOUR_PG_USERNAME__
+POSTGRESS_PASSWORD=__YOUR_PG_PASSWORD__
+POSTGRESS_DATABASE=__YOUR_PG_DATABASE__
+POSTGRESS_HOST=__YOUR_PG_URL__
 JWT_SECRET=mySecret
 AWS_BUCKET=__YOUR_AWS_BUCKET_NAME__
 AWS_REGION=__YOUR_AWS_BUCKET_REGION__
 AWS_PROFILE=__YOUR_AWS_PROFILE__
 ```
 
-Replace the variables `__YOUR_AWS_BUCKET_NAME__`, `__YOUR_AWS_BUCKET_REGION__` and `__YOUR_AWS_PROFILE__` by your own information
+Replace the variables: `__XXX__` by your own information
 
 Build the images by running:
 
