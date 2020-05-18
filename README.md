@@ -70,17 +70,19 @@ docker-compose up
 
 The application is now running at http://localhost:8100
 
+## Deploy on AWS
+
 ### Create a Kubernetes cluster
 
 #### Provision the AWS cluster infrastructure using terraform and install K8s on AWS using KubeOne
 
 Follow the instruction at https://github.com/kubermatic/kubeone/blob/master/docs/quickstart-aws.md
 
-### Deploy the Kubernetes services by running
+### Deploy the application services
 
 ```
 ./deployment/k8s/deploy_service.sh
-'''
+```
 
 ### Build the production images
 
@@ -115,5 +117,7 @@ Build and push the docker image for the frontend.
 
 For each deployment.yaml in deployment/k8s replace the image name by your own Docker Hub name. 
 
+```
 ./deployment/k8s/deploy.sh
+```
 
