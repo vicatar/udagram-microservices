@@ -16,7 +16,7 @@ spec:
         api: external        
     spec:
       containers:
-      - image: vicatar/udacity-frontend:local
+      - image: vicatar/udacity-frontend:prod
         name: frontend
         imagePullPolicy: Always          
         ports:
